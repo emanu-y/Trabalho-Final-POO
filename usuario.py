@@ -5,6 +5,7 @@ class Usuario :
         self.nome = nome 
         self.email = email 
         self.telefone = telefone
+        #adicionar o tipo de conta
 
     def getSenha(self):
         return self.__senha
