@@ -1,5 +1,4 @@
 from usuario import Usuario
-from hotel import Hotel
 
 class Administrador(Usuario):
     def __init__(self, nome_usuario, senha, nome, email, telefone, id_adm):
