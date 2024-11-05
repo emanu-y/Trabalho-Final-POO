@@ -8,14 +8,11 @@ class Usuario :
         self.telefone = telefone
         #adicionar o tipo de conta
 
-
-    def cadastrarUsuario(self):
-        print('Vamos fazer seu cadastro:')
-        print('INforme seu:')
-        self.nome_usuario = input('Informe seu nome: ')
+        #  print('Digite o numero da opção desejada:')
+        #         print('1 - Atualizar Perfil')
+        #         print('2 - Fazer Reserva')
+                
         
-
-
     def getSenha(self):
         return self.__senha
     
@@ -31,11 +28,8 @@ class Usuario :
             # Laço para permitir até 3 tentativas de senha
             while tentativas > 0: 
              senha = input('Digite sua senha: ')
-             if senha == self.getSenha():                                      #esa com erro
-                #mostrar opçoes para o cliente escolher
-                
-                
-                print('acesso permitido')
+             if senha == self.getSenha():  
+                                                   
                 return
              else:
                 tentativas -= 1
@@ -45,7 +39,8 @@ class Usuario :
             print('Ususario nao encontrado.')
 
 
-        pass
+    
+
     
         
 
