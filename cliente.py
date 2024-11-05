@@ -6,7 +6,11 @@ class Cliente (Usuario):
         self.id_cliente = id_cliente
         self.__historico_Reservas = []
         
-
+    def telaInicial(self):
+         print('Digite o numero da opção desejada:')
+         print('1 - Atualizar Perfil')
+         print('2 - Fazer Reserva')
+         
     def pesquisar_quartos(self):
         pass 
 
