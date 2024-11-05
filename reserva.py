@@ -6,7 +6,7 @@ class Reserva:
         self.id_reserva = id_reserva
         self.cliente = Cliente
         self.quarto = Quarto
-        self.data_checkin = data_checkin
+        self.data_checkin = data_checkin 
         self.data_checkout = data_checkout
         self.preco_total= []
 

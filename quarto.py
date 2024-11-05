@@ -6,6 +6,9 @@ class Quarto:
         self.preco_por_noite = preco_por_noite
         self.disponibilidade = True
 
+    def getNumero_quarto(self):
+        return self.numero_quarto
+
     def getDisponivel(self):
         return self.disponibilidade
     
@@ -26,6 +29,8 @@ class Quarto:
     def liberar_quarto(self):
         pass
 
+
+qua = Quarto(434,'seila')
 
 
 
