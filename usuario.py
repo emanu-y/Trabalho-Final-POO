@@ -7,10 +7,6 @@ class Usuario :
         self.email = email 
         self.telefone = telefone
         #adicionar o tipo de conta
-
-        #  print('Digite o numero da opção desejada:')
-        #         print('1 - Atualizar Perfil')
-        #         print('2 - Fazer Reserva')
                 
         
     def getSenha(self):
@@ -18,14 +14,7 @@ class Usuario :
     
     def getNome_usuario(self):
         return self.__nome_usuario
-    
-    # def inicio (self):
-    #     print('Bem Vindo ao SiStema de Gernciamenti de HOtel. Escolha uma opçao: ')
-    #     print('1 - Login')
-    #     print('1- criar conta')
-        
-    
-   
+     
     def fazer_login(self):
         print('LOGIN')
         nome_u = input('Digite o nome de usuario: ')
@@ -50,6 +39,7 @@ class Usuario :
 
 
     def mostrar_opcoes(self):
+        print('/n ---- HOME ----')
         print('Escolha uma opção:')
         print('1- Atualizar Perfil')
         print('2- Fazer Reserva')
@@ -66,41 +56,38 @@ class Usuario :
         else:
             print('Opção inválida.')
             
-             
-          
-    
-    
-    
-    
-
-
-        
-
-
-    
-  
-    
-        
+                
 
     def fazer_logaout(self):
         print(f'{self.getNome_usuario()} saiu.')
 
         
-    
     def setAtualizar_perfil(self):
-        print('Digite Sua Senha:')
-        # senha = input('Senha: ')
-        # if senha == self.getSenha:
-        #  nomeUsuario = input('Nome: ')
-        #  novaSenha = input('N')
-        # self.__senha = senha
-        # self.nome = nome 
-        # self.email = email 
-        # self.telefone = telefone
-        #   print('Atualizar Perfil:')
-
-
-        #   self.nome
+        tentativas = 10
+        while tentativas > 0: 
+         print('Digite sua senha: ')
+         senha= input('Digite aqui:')
+         print('Confirme sua Senha:')
+         confirmação_senha = input('Digite aqui:')
+         if senha == self.getSenha() and confirmação_senha == self.getSenha():
+            print("\n--- Atualização de Perfil ---")
+            novo_nome = input("Novo nome (pressione Enter para manter o atual): ")
+            novo_email = input("Novo email (pressione Enter para manter o atual): ")
+            novo_telefone = input("Novo telefone (pressione Enter para manter o atual): ")
+        
+            if novo_nome:
+               self.nome = novo_nome
+            if novo_email:
+                self.email = novo_email
+            if novo_telefone:
+              self.telefone = novo_telefone
+        
+            print("Perfil atualizado com sucesso.")
+            self.mostrar_opcoes()
+            return
+        else:
+            print('Senha incorreta. Tente novamente.')
+ 
     
     def inicio (self):
         print('Bem Vindo ao SiStema de Gernciamenti de HOtel. Escolha uma opçao: ')
@@ -113,11 +100,6 @@ class Usuario :
             self.fazer_login()
         else:
             print('Opção inválida.')
-
-
-
-
-
 
 
 if __name__ == '__main__':
