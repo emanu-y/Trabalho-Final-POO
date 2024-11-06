@@ -6,20 +6,29 @@ class Administrador(Usuario):
     def __init__(self, nome_usuario, senha, nome, email, telefone, id_adm):
         super().__init__(nome_usuario, senha, nome, email, telefone)
         self.id_adm = id_adm
+        self.clientes = []
+        self.quartos = []
+
+    def getClientes(self):
+        for clientes in self.clientes:
+            print(f'{Usuario.getNome_usuario()}')
 
     def adicionarCliente(self):
-        Hotel.adicionar(Usuario) 
+        self.clientes.append(Usuario.getNome_usuario())
+        
 
     def adicionar_quarto(self):
-        Hotel.addQuarto.append(Quarto)
+        self.quartos.append(Quarto.getNumero_quarto())
 
         
 
-    def setatualizar_quarto (self):
+    def atualizar_quarto (self):
         Quarto.setDados(input(""))
     
     def remover_quarto(self):
-        pass
+        self.quartos.remove(Quarto.getNumero_quarto())
+
+        
 
     def visualizar_todas_as_reservas(self):
         for reserrva in reservas:
