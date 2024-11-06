@@ -18,8 +18,14 @@ class Usuario :
     
     def getNome_usuario(self):
         return self.__nome_usuario
-               
-
+    
+    # def inicio (self):
+    #     print('Bem Vindo ao SiStema de Gernciamenti de HOtel. Escolha uma opçao: ')
+    #     print('1 - Login')
+    #     print('1- criar conta')
+        
+    
+   
     def fazer_login(self):
         print('LOGIN')
         nome_u = input('Digite o nome de usuario: ')
@@ -28,9 +34,13 @@ class Usuario :
             # Laço para permitir até 3 tentativas de senha
             while tentativas > 0: 
              senha = input('Digite sua senha: ')
-             if senha == self.getSenha():  
+             if senha == self.getSenha(): 
+                print('Acesso Permitido') 
+                self.mostrar_opcoes()
+                #opções para escolher
                                                    
                 return
+            
              else:
                 tentativas -= 1
                 print(f'Senha incorreta. Você tem mais {tentativas} tentativa(s).')
@@ -39,13 +49,43 @@ class Usuario :
             print('Ususario nao encontrado.')
 
 
+    def mostrar_opcoes(self):
+        print('Escolha uma opção:')
+        print('1- Atualizar Perfil')
+        print('2- Fazer Reserva')
+        print('3- Sair')
+        oppcao = input('Digite aqui:')
+
+        if oppcao == '1':
+            self.setAtualizar_perfil()
+        elif oppcao == "2":
+            #clienre.fazer_reserva()
+            pass 
+        elif oppcao == '3':
+            self.fazer_logaout()
+        else:
+            print('Opção inválida.')
+            
+             
+          
+    
+    
+    
     
 
+
+        
+
+
+    
+  
     
         
 
     def fazer_logaout(self):
-        pass
+        print(f'{self.getNome_usuario()} saiu.')
+
+        
     
     def setAtualizar_perfil(self):
         print('Digite Sua Senha:')
@@ -61,6 +101,19 @@ class Usuario :
 
 
         #   self.nome
+    
+    def inicio (self):
+        print('Bem Vindo ao SiStema de Gernciamenti de HOtel. Escolha uma opçao: ')
+        print('1 - Login')
+        print('1- criar conta')
+        opcao = input('Digite aqui: ')
+        if opcao == "1": 
+            self.fazer_login()
+        elif opcao == '2':
+            self.fazer_login()
+        else:
+            print('Opção inválida.')
+
 
 
 
@@ -69,5 +122,5 @@ class Usuario :
 
 if __name__ == '__main__':
     c1 = Usuario('emanu22', 'senhaeman', 'Emanuelly', 'emanuelly@gmail.com', 9898989)
-    c1.fazer_login()
+    c1.inicio()
 
