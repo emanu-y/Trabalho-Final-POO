@@ -54,7 +54,9 @@ class Usuario ():
                 if self.tipo == 'adimin':  
                   print('Acesso Permitido')
                   from administrador import Administrador
-                  Administrador.mostrar_opcoes_adm(self) 
+                   # Cria uma instância de Administrador e chama o método de opções
+                  adm = Administrador(self.__nome_usuario, self.__senha, self.nome, self.email, self.telefone, 222)
+                  adm.mostrar_opcoes_adm() 
                          #sempre adicionar o self quando importar metodo de otra classe         
                    #opções para escolher
                 elif self.tipo == 'cliente':
