@@ -10,7 +10,7 @@ class Quarto:
         return self.numero_quarto
 
     def getDisponivel(self):
-        return self.disponibilidade
+        return self.disponibilidade        
     
     def setDisponivel(self, status):
         self.disponibilidade = status
@@ -57,7 +57,7 @@ class Quarto:
         
 
 
-qua = Quarto(434,'seila')
+
 
 
 
