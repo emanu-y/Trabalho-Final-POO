@@ -9,7 +9,10 @@ class Reserva:
         self.data_checkin = data_checkin 
         self.data_checkout = data_checkout
         self.preco_total= []
+    
 
+    def info(self):
+        pass
 
     def calcular_total(self):
         pass

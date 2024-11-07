@@ -1,15 +1,16 @@
-from usuario import Usuario
-from quarto import Quarto
-
+from administrador import Administrador
 class Hotel:
     def __init__(self):
-      self.clientes = []
-      self.quartos = []
-      self.reservas = []
+     pass
+        
+   
+   
+   
+       
 
 
-    def adicionar(self):
-       self.clientes.append(Usuario)
 
-    def addQuarto(self):
-       self.quartos.append(Quarto)
+  
+
+
+       #arrumar um jeito de nao precisar instanciar
