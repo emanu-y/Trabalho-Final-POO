@@ -6,6 +6,34 @@ class Cliente (Usuario):
         self.id_cliente = id_cliente
         self.__historico_Reservas = []
 
+    def mostrar_opcoes_cliente(self):
+        print('/n ---- HOME ----')
+        print('Escolha uma opção:')
+        print('1 - Atualizar Perfil')
+        print('2 - Fazer Reserva')
+        print('3 - Pesuisar Quartos ')
+        print('4 - Visualizar Reservas')
+        print('5 - Cancelar Reservas')
+        print('6 - Sair')
+        oppcao = input('Digite aqui:')
+
+        if oppcao == '1':
+            Usuario.setAtualizar_perfil(self) #sempre adicionar o self quando importar metodo de otra classe
+        elif oppcao == "2":
+            self.fazer_reserva()
+        elif oppcao == '3':
+            self.pesquisar_quartos()
+        elif oppcao == '4':
+           self.visualizar_reservas()    
+        elif oppcao == '5':
+         self.cancelar_reserva()
+        elif oppcao == '6':
+           Usuario.fazer_logaout
+
+           
+        else:
+            print('Opção inválida.')
+
 
     
         
@@ -28,7 +56,7 @@ class Cliente (Usuario):
         #remover reserva do array reserva 
         pass
 
-
+cliente = Cliente()
 
 
     
