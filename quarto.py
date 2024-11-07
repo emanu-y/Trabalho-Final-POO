@@ -17,17 +17,44 @@ class Quarto:
 
 
     def verificar_disponibilidade(self):
-        if self.getDisponivel == True:
+        print('DIGITE O NUMERO DO QUARTO')
+        numero = input('Digite aqui: ')
+        if numero in numero: #lista de quartoos 
+        
+         if self.getDisponivel() == True:
             return 'O quarto está disponível.'
-        else:
+         else:
             return 'o quarto está reservado.'
+        else:
+            print('Quarto nao encontrado.')
         
     def reservar_quarto(self):
-        #mudar a disponibilidade
-        pass
-
+        print('DIGITE O NUMERO DO QUARTO')
+        numero = input('Digite aqui: ')
+        #  if numero in lista de quartos
+        if self.getDisponivel() == True:
+            self.setDisponivel(False)
+            print('Seu Quarto foi reservado.')
+        else:
+            return 'Quarto Indisponível.'
+        
+       
     def liberar_quarto(self):
-        pass
+        print('DIGITE O NUMERO DO QUARTO')
+        numero = input('Digite aqui: ')
+        # if numero in lista de quartos: 
+        if self.getDisponivel() == False:
+               self.setDisponivel(True)
+               print('O quarto foi liberado.')
+        else:
+               print('Esse quarto já está disponível.')
+           
+
+
+
+
+
+        
 
 
 qua = Quarto(434,'seila')
