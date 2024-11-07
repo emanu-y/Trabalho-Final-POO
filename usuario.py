@@ -1,14 +1,18 @@
 
-
-
-class Usuario :
+class Usuario ():
     def __init__(self, nome_usuario, senha, nome, email, telefone):
         self.__nome_usuario = nome_usuario
         self.__senha = senha
         self.nome = nome 
         self.email = email 
         self.telefone = telefone
-        #adicionar o tipo de conta
+        self.tipo = 'adimin' if email.endswith('@adimin') else 'cliente'
+        # self.tipo = 'adimin' or 'cliente'
+        # if self.email == f'{self.getNome_usuario}@adimin':
+        #    self.tipo == 'adimin'
+        # else:
+        #    self.tipo == 'cliente'
+        # #adicionar o tipo de conta
                 
         
     def getSenha(self):
@@ -22,13 +26,20 @@ class Usuario :
         print('Bem Vindo ao SiStema de Gernciamenti de HOtel. Escolha uma opçao: ')
         print('1 - Login')
         print('1- criar conta')
+        print('3 - sair')
         opcao = input('Digite aqui: ')
         if opcao == "1": 
             self.fazer_login()
         elif opcao == '2':
             self.fazer_login()
+        elif opcao == '3':
+           self.fazer_logaout()
         else:
-            print('Opção inválida.')
+            print('OPÇÃO INVÁLIDA.')
+            self.inicio()
+        
+        
+
      
     def fazer_login(self):
         print('LOGIN')
@@ -39,13 +50,17 @@ class Usuario :
             while tentativas > 0: 
              senha = input('Digite sua senha: ')
              if senha == self.getSenha(): 
-                if self.getNome_usuario() in Administrador.getClientes():  
-                  print('Acesso Permitido') 
-                  self.mostrar_opcoes_cliente()
-                    #opções para escolher
-                else:
-                   self.mostrar_opcoes_adm()
-                                                   
+                
+                if self.tipo == 'adimin':  
+                  print('Acesso Permitido')
+                  from administrador import Administrador
+                  Administrador.mostrar_opcoes_adm(self) 
+                         #sempre adicionar o self quando importar metodo de otra classe         
+                   #opções para escolher
+                elif self.tipo == 'cliente':
+                 from cliente import Cliente
+                 Cliente.mostrar_opcoes_cliente(self)
+                        #sempre adicionar o self quando importar metodo de otra classe                                            
                 return
             
              else:
@@ -54,64 +69,9 @@ class Usuario :
                 print('tente novamente')
         else: 
             print('Ususario nao encontrado.')
-
-   
-
-
-    def mostrar_opcoes_cliente(self):
-        print('/n ---- HOME ----')
-        print('Escolha uma opção:')
-        print('1 - Atualizar Perfil')
-        print('2 - Fazer Reserva')
-        print('3 - Pesuisar Quartos ')
-        print('4 - Visualizar Reservas')
-        print('5 - Cancelar Reservas')
-        print('6 - Sair')
-        oppcao = input('Digite aqui:')
-
-        if oppcao == '1':
-            self.setAtualizar_perfil()
-        elif oppcao == "2":
-            Cliente.fazer_reserva()
-        elif oppcao == '3':
-            Cliente.pesquisar_quartos()
-        elif oppcao == '4':
-           Cliente.visualizar_reservas()    
-        elif oppcao == '5':
-         Cliente.cancelar_reserva()
-        elif oppcao == '6':
-           self.fazer_logaout
-
-           
-        else:
-            print('Opção inválida.')
-
-    def mostrar_opcoes_adm():
-       print('Gerenciamento do Hotel')
-       print('Digite o numero da opçao desejada.')
-       print('1 - Adicionar Cliente')
-       print('2 - Adiionar Quarto')
-       print('3 - Atualizar Quarto')
-       print('4 - Remover Quarto')
-       print('5 - Visuallizar Reservas')
-       print('6 - Gerar Relatorio Mensal')
-       oppcao = input('Digite aqui: ')
+            self.inicio()
 
 
-       if oppcao == '1':
-          Administrador.adicionarCliente()
-       elif oppcao == '2':
-          Administrador.adicionar_quarto()
-       elif oppcao == '3':
-          Administrador.atualizar_quarto()
-       elif oppcao == '4':
-          Administrador.remover_quarto()
-       elif oppcao == '5':
-          Administrador.visualizar_todas_as_reservas()
-       elif oppcao == '6':
-          Administrador.gerar_relatorio()
-       else:
-          print('Opção invalida.')
             
                 
 
@@ -140,14 +100,19 @@ class Usuario :
               self.telefone = novo_telefone
         
             print("Perfil atualizado com sucesso.")
-            self.mostrar_opcoes()
+            from cliente import Cliente
+            Cliente.mostrar_opcoes_cliente(self)
             return
         else:
             print('Senha incorreta. Tente novamente.')
  
 if __name__ == '__main__':
     c1 = Usuario('emanu22', 'senhaeman', 'Emanuelly', 'emanuelly@gmail.com', 9898989)
-    c1.inicio()
+    adm = Usuario ('emanu', 'adimin', 'eman', 'udeid@adimin', 930490293)
+
+    adm.inicio()
+    
+     #arrumar um jeito de nao precisar instanciar
    
 
 
