@@ -132,6 +132,7 @@ class Administrador(Usuario):
 
     def visualizar_todas_as_reservas(self):
         print('-----Reserva-----')
+        
         for reserva in self.reservas:
            print(f'`{reserva}')
         pass
