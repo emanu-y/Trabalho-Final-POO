@@ -1,6 +1,6 @@
 from usuario import Usuario
 from quarto import Quarto
-
+from reserva import Reserva
 
 class Cliente (Usuario):
     def __init__(self, nome_usuario, senha, nome, email, telefone, id_cliente):
