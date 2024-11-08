@@ -3,14 +3,28 @@ class Quarto:
         self.numero_quarto = numero_quarto
         self.tipo_quarto = tipo_quarto
         self.caracteristicas = caracteristicas
-        self.preco_por_noite = preco_por_noite
+        self.preco_por_noite = float(preco_por_noite)
         self.disponibilidade = True
 
     def getNumero_quarto(self):
         return self.numero_quarto
 
     def getDisponivel(self):
-        return self.disponibilidade        
+        return self.disponibilidade 
+    
+    def getPreco_porNoite(self):
+        return self.preco_por_noite
+    
+    def setTipo (self, n_tipo):
+        self.tipo_quarto = n_tipo
+
+    def setCaracteristicas(self, N_cara):
+        self.caracteristicas = N_cara
+    
+    def setPreco(self, valor):
+        self.preco_por_noite = valor
+
+           
     
     def setDisponivel(self, status):
         self.disponibilidade = status
