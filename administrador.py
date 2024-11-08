@@ -44,9 +44,9 @@ class Administrador(Usuario):
        elif oppcao == '6':
           Relatorio.gerar_relatorio(self)
        elif oppcao == '7':
-          Usuario.setAtualizar_perfil(self)
+          self.setAtualizar_perfil()
        elif oppcao == '8':
-          Usuario.fazer_logaout(self)
+          self.fazer_logaout()
           
        else:
           print('Opção invalida.')
@@ -128,14 +128,8 @@ class Administrador(Usuario):
             self.mostrar_opcoes_adm()
          else:
             print('quarto não encontrado.')
-            self.setAtualizar_quarto()
-         
-       
-
-
-    
+            self.setAtualizar_quarto()  
       
-    
     def remover_quarto(self):
        print('---- Remover Quarto-----')
        numero = input('Numero do quarto que deja remover: ')
