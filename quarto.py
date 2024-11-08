@@ -15,6 +15,12 @@ class Quarto:
     def getPreco_porNoite(self):
         return self.preco_por_noite
     
+    def getCaracteristicas(self):
+        return self.caracteristicas
+    
+    def getTipo(self):
+        return self.tipo_quarto
+        
     def setTipo (self, n_tipo):
         self.tipo_quarto = n_tipo
 
