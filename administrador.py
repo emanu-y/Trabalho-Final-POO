@@ -36,7 +36,7 @@ class Administrador(Usuario):
        elif oppcao == '2':
           self.adicionar_quarto()
        elif oppcao == '3':
-          self.atualizar_quarto()
+          self.setAtualizar_quarto()
        elif oppcao == '4':
           self.remover_quarto()
        elif oppcao == '5':
@@ -73,20 +73,27 @@ class Administrador(Usuario):
        numero = input('Digite o numero do quarto: ')
        
        for quarto in self.quartos:
-         if numero == quarto.getNumero_quarto():
+         if numero == quarto.getNumero_quarto():    #Quarto.getNumero_quarto()
              print('Ja existe um quarto com esse numero.')
              self.adicionar_quarto()
              return
         
        tipo = input('Tipo de quarto : ')
-       preco = float(input('Preçp por noite: '))
-       caracteristicas = input('Caracteristicas: ')
+       while True:
+        preco = input('Preçp por noite: ')
+        try:
+           preco = float(preco)
+        except:
+           print('mssmsm')
+       
+       
+        caracteristicas = input('Caracteristicas: ')
 
-       novo_quarto = Quarto(numero, tipo, caracteristicas, preco)
+        novo_quarto = Quarto(numero, tipo, caracteristicas, preco)
        #KAKAKAKKA SURTOS COM ESSA PARTE
-       self.quartos.append(novo_quarto)
-       print(f'Quarto {numero} foi adicionado.')
-       self.mostrar_opcoes_adm()
+        self.quartos.append(novo_quarto)
+        print(f'Quarto {numero} foi adicionado.')
+        self.mostrar_opcoes_adm()
     
 
        
@@ -94,23 +101,36 @@ class Administrador(Usuario):
 
         
 
-    def atualizar_quarto (self):
+    def setAtualizar_quarto (self):
       print('------Atualizar Quarto-----')
       numero = input('Digite o numero do quarto que deseja atualizar: ')
       for quarto in self.quartos:
-         if numero == Quarto.getNumero_quarto(self):
-          novoNumero = input('Novo numero: ')
-          quarto.numero = novoNumero
-          tipo  = input('Novo tipo: ')
-          quarto.tipo = tipo
-          novaCaracteristicas = input('Novo carat: ')
-          quarto.caracteristicas = novaCaracteristicas
-          novoPreco = float(input('Novo preço P/ noite: '))
-          quarto.preco = novoPreco
-          print('Quarto Atualizado')
-          return
+         if  quarto not in self.quartos:
+            print('Nao possuimos quartos cadastrados.')
+         elif numero == quarto.getNumero_quarto():               #ARRUMAR OS ENUNCIADOS 
+            novo_tipo = input('novo tipo:')
+            nova_caract= input('NOvas Caractristicas:')
+            preco_atualizado = float(input('Novo preco p/n:'))
+            
+            
+            if novo_tipo:
+               quarto.setTipo( novo_tipo)
+            if nova_caract:
+               quarto.setCaracteristicas( nova_caract)
+            if preco_atualizado:
+                try:
+                 quarto.setPreco(float(preco_atualizado))
+                except ValueError:
+                   print('Valor Invalido.')
+            self.setAtualizar_quarto()
+                                                         #achar um jeito de colocar erro e voltar pro negocio de menu quando o float der errado
+            print('quarto atualizado')
+            self.mostrar_opcoes_adm()
          else:
-            ('Quarto não encontrado.')
+            print('quarto não encontrado.')
+            self.setAtualizar_quarto()
+         
+       
 
 
     
@@ -123,8 +143,10 @@ class Administrador(Usuario):
           if numero == quarto.getNumero_quarto():
              self.quartos.remove(quarto)
              print(f'Quarto {numero} foi removido.')
-          else:
+             self.mostrar_opcoes_adm()
+       else:
              print('Quarto não encontrado.')
+             self.mostrar_opcoes_adm()
 
         
 
