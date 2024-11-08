@@ -102,8 +102,14 @@ class Usuario ():
               self.telefone = novo_telefone
         
             print("Perfil atualizado com sucesso.")
-            from cliente import Cliente
-            Cliente.mostrar_opcoes_cliente(self)
+            if self.tipo == 'adimin':                     #mudanças para retornar ao menu que pertence a cada classe
+             from administrador import Administrador
+             adm = Administrador(self.__nome_usuario, self.__senha, self.nome, self.email, self.telefone, 222)
+             adm.mostrar_opcoes_adm() 
+            else:
+          
+             from cliente import Cliente
+             Cliente.mostrar_opcoes_cliente(self)
             return
         else:
             print('Senha incorreta. Tente novamente.')
