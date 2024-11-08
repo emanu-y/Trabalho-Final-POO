@@ -1,5 +1,6 @@
 from cliente import Cliente
 from quarto import Quarto 
+from administrador import Administrador
 
 class Reserva:
     def __init__(self, id_reserva, cliente, quarto, data_checkin, data_checkout):
@@ -15,11 +16,20 @@ class Reserva:
         pass
 
     def calcular_total(self):
-        pass
+        print('CALCULAR PREÇO')
+        numero = input('Digite o numero do quarto que voçe deseja alugar')
+        dias = input(f'Informe quantos dias deseja alugar o quarto {numero} : ')
+        
+        for numero in Administrador.self.quartos(self):
+            if numero == Quarto.getNumero_quarto(self):
+                total = dias * Quarto.getPreco_porNoite(self)
+                print(f'Sua estadia fica por {total}')
+            else:
+                print('Quarto não encontrado.')
 
     def confirmar_reserva(self):
-        pass
+        print('reserva confirmada')
 
     def cancelar_reserva(self):
-        pass
+        print('reserva cancelada.')
        
