@@ -15,6 +15,12 @@ class Administrador(Usuario):
     def getClientes(self):
         for cliente in self.clientess:
             print(f'{cliente.getNome_usuario()}')
+
+
+    def getQuartos(self):
+       return self.quartos
+    
+
     
     
     def mostrar_opcoes_adm(self):
