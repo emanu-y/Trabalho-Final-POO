@@ -10,7 +10,7 @@ class Reserva:
         self.quarto = quarto
         self.data_checkin = data_checkin 
         self.data_checkout = data_checkout
-        self.preco_total= []
+        self.preco_total= 0
     
 
     def info(self):
@@ -18,13 +18,13 @@ class Reserva:
 
     def calcular_total(self):
         print('CALCULAR PREÇO')
-        quarto = input('Digite o numero do quarto que deseja fazer a reserva: ')
-        data_checkin = float(input('Digite a data de checkin (data de chegada) : '))
-        data_checkout =float(input('Digite a data de checkout (data de saída): '))
+        numero_quarto = input('Digite o numero do quarto que deseja fazer a reserva: ')
+        data_checkin = int(input('Digite a data de checkin (data de chegada) : '))
+        data_checkout =int(input('Digite a data de checkout (data de saída): '))
 
         quartos_disponiveis = Administrador.getQuartos(self)
         for quarto in quartos_disponiveis:
-            if quarto == quarto.getNumero_quarto():
+            if numero_quarto == quarto.getNumero_quarto():
                 dias = data_checkout - data_checkin
                 total = dias * quarto.getpreco_porNoite()
                 self.preco_total = total 
