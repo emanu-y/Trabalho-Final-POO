@@ -8,15 +8,26 @@ class Administrador(Usuario):
         super().__init__(nome_usuario, senha, nome, email, telefone)
         self.id_adm = id_adm
         self.clientes = []
-        self.quartos =[]
+        self.quartos = [
+           Quarto(101,'casal', "Vista para o mar", 300),
+            Quarto(102,'familia', "Vista para o jardim", 200),
+            Quarto(103,'solteiro', "Com varanda",320),
+        ]
+        
         self.reservas = []
 
 
     def getClientes(self):
-        for cliente in self.clientess:
-            print(f'{cliente.getNome_usuario()}')
-
-
+        return self.clientes
+      
+      
+    def getId (self):
+     return self.id_adm
+    
+    def getEmail(self):
+       return self.email
+    
+        
     def getQuartos(self):
        return self.quartos
     
@@ -56,6 +67,7 @@ class Administrador(Usuario):
           
        else:
           print('Opção invalida.')
+          self.mostrar_opcoes_adm()
 
     def adicionarCliente(self):
         print('CADASTRAR CLIENTES: ')
@@ -85,21 +97,15 @@ class Administrador(Usuario):
              return
         
        tipo = input('Tipo de quarto : ')
-       while True:
-        preco = input('Preçp por noite: ')
-        try:
-           preco = float(preco)
-        except:
-           print('mssmsm')
-       
-       
-        caracteristicas = input('Caracteristicas: ')
+       preco = input('Preçp por noite: ') 
+       preco = float(preco)
+       caracteristicas = input('Caracteristicas: ')
 
-        novo_quarto = Quarto(numero, tipo, caracteristicas, preco)
+       novo_quarto = Quarto(numero, tipo, caracteristicas, preco)
        #KAKAKAKKA SURTOS COM ESSA PARTE
-        self.quartos.append(novo_quarto)
-        print(f'Quarto {numero} foi adicionado.')
-        self.mostrar_opcoes_adm()
+       self.quartos.append(novo_quarto)
+       print(f'Quarto {numero} foi adicionado.')
+       self.mostrar_opcoes_adm()
     
 
        
@@ -156,8 +162,51 @@ class Administrador(Usuario):
         print('-----Reserva-----')
         
         for reserva in self.reservas:
-           print(f'`{reserva}')
+           print(f'{reserva}')
         pass
+    
+
+
+   #  def pesquisarQuartos(self):
+   #      print('-----QUARTOS DISPONIVEIS')
+              
+        
+       
+       
+   #      for quarto in self.quartos:
+   #       if Quarto.verificar_disponibilidade(self) == True:
+   #            print(f'Numero: {quarto.getNumero_quarto()} ')
+   #            print(f'Descrição {quarto.getcaracteristicas()}')
+   #            print(f'Tipo: {quarto.getTipo()}')
+   #            print(f'Pernoite: {quarto.getPreco_porNoite}')
+   #            print('---------------------------------------------------')
+
+# if __name__ == '__main__':
+   
+   
+   
+#    a= Cliente ('emanu', 'adimin', 'eman', 'udeiadimin', 930490293, 999)
+   
+#    b= Administrador ('emanu', 'adimin', 'eman', 'udei@adimin', 930490293, 000)
+    
+    
+   
+   
+#    a.inicio()
+#    a.pesquisar_quartos(b)
+  
+ 
+#    quartos = [
+#      Quarto('1', 'casal', 'lalalala', 12),
+#      Quarto('2', 'familia', 'gggggggggg', 14),
+#      Quarto('3', 'solteiro', 'ldjjdjdjdjdjnja', 125)
+#    ]
+
+
+
+   
+
+
 
     
 
@@ -172,4 +221,4 @@ class Administrador(Usuario):
 
 
  
-         
+      

@@ -7,13 +7,6 @@ class Usuario ():
         self.email = email 
         self.telefone = telefone
         self.tipo = 'adimin' if email.endswith('@adimin') else 'cliente'
-        # self.tipo = 'adimin' or 'cliente'
-        # if self.email == f'{self.getNome_usuario}@adimin':
-        #    self.tipo == 'adimin'
-        # else:
-        #    self.tipo == 'cliente'
-        # #adicionar o tipo de conta
-                
         
     def getSenha(self):
         return self.__senha
@@ -24,16 +17,20 @@ class Usuario ():
 
     def inicio (self):
         print('Bem Vindo ao SiStema de Gernciamenti de HOtel. Escolha uma opçao: ')
-        print('1 - Login')
-        print('1- criar conta')
-        print('3 - sair')
+        print('1 - Login Administrador')
+        print('2 - Login Cliente')
+        print('3 - Cadastrar')
         opcao = input('Digite aqui: ')
         if opcao == "1": 
-            self.fazer_login()
+            usuario = input('Digite seu nome de usuario: ')
+            senha = input('Digite sua senha: ')
+            self.fazer_login(usuario, senha)
         elif opcao == '2':
-            self.fazer_login()
+            usuario = input('Digite seu nome de usuario: ')
+            senha = input('Digite sua senha: ')
+            self.fazer_login(usuario, senha)
         elif opcao == '3':
-           self.fazer_logaout()
+           self.setAtualizar_perfil()
         else:
             print('OPÇÃO INVÁLIDA.')
             self.inicio()
@@ -41,27 +38,29 @@ class Usuario ():
         
 
      
-    def fazer_login(self):
+    def fazer_login(self, usuario, senha):
         print('LOGIN')
-        nome_u = input('Digite o nome de usuario: ')
-        if nome_u == self.getNome_usuario():
+        # usuario = input('Digite o nome de usuario: ')
+        if usuario == self.getNome_usuario():
             tentativas = 3
             # Laço para permitir até 3 tentativas de senha
             while tentativas > 0: 
-             senha = input('Digite sua senha: ')
+            #  senha = input('Digite sua senha: ')
              if senha == self.getSenha(): 
                 
                 if self.tipo == 'adimin':  
                   print('Acesso Permitido')
                   from administrador import Administrador
                    # Cria uma instância de Administrador e chama o método de opções
-                  adm = Administrador(self.__nome_usuario, self.__senha, self.nome, self.email, self.telefone, 222)
+                  adm = Administrador(self.__nome_usuario, self.__senha, self.nome, self.email, self.telefone, self)
                   adm.mostrar_opcoes_adm() 
                          #sempre adicionar o self quando importar metodo de otra classe         
                    #opções para escolher
                 elif self.tipo == 'cliente':
                  from cliente import Cliente
-                 Cliente.mostrar_opcoes_cliente(self)
+                 cliente = Cliente(self.__nome_usuario, self.__senha, self.nome, self.email, self.telefone, 999)
+                 cliente.mostrar_opcoes_cliente()
+
                         #sempre adicionar o self quando importar metodo de otra classe                                            
                 return
             
@@ -114,14 +113,15 @@ class Usuario ():
         else:
             print('Senha incorreta. Tente novamente.')
  
-if __name__ == '__main__':
-    c1 = Usuario('emanu22', 'senhaeman', 'Emanuelly', 'emanuelly@gmail.com', 9898989)
-    adm = Usuario ('emanu', 'adimin', 'eman', 'udeid@adimin', 930490293)
 
-    adm.inicio()
     
-     #arrumar um jeito de nao precisar instanciar
-   
+    # adm = Usuario ('emanu', 'adimin', 'eman', 'udeiadimin', 930490293)
+    # adm.inicio()
+
+
+    
+    
+    
 
 
 

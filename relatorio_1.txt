@@ -1,0 +1,7 @@
+Relatório ID: 1
+Tipo de Relatório: Financeiro
+Data de Geração: 2024-11-11
+Dados:
+  - Cliente: João Silva
+  - Serviço: Hospedagem
+  - Total: R$ 500,00

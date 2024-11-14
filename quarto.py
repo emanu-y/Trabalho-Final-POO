@@ -37,16 +37,15 @@ class Quarto:
 
 
     def verificar_disponibilidade(self):
-        print('DIGITE O NUMERO DO QUARTO')
-        numero = input('Digite aqui: ')
-        if numero in numero: #lista de quartoos 
+       if self.getDisponivel == True:
+           return True
+       else:
+           return False
+
+    
+         
         
-         if self.getDisponivel() == True:
-            return 'O quarto está disponível.'
-         else:
-            return 'o quarto está reservado.'
-        else:
-            print('Quarto nao encontrado.')
+            # print('Quarto nao encontrado.')
         
     def reservar_quarto(self):
         print('DIGITE O NUMERO DO QUARTO')

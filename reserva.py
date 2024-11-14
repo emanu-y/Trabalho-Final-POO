@@ -1,5 +1,4 @@
-from cliente import Cliente
-from quarto import Quarto 
+
 from administrador import Administrador
 
 
