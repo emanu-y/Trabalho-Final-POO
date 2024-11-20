@@ -41,6 +41,7 @@ def login():
 
     
     if opcao == '3':
+        cliente = False
         print('------ Cadastro ------')
         nome = input('Digite seu nome: ')
         nome_u = input('Digite seu nome de usuário: ')
@@ -48,12 +49,20 @@ def login():
         email = input('Digite seu email: ')
         senha = input('Digite sua senha: ')
         senha = input('Confirme sua senha: ')
-       
-        novo_cliente= Cliente(nome_u, senha, nome, email, telefone)
-        novo_cliente.cadastro(novo_cliente)
+        cliente = True
+        if cliente == True:
+         novo_cliente= Cliente(nome_u, senha, nome, email, telefone)
+         novo_cliente.cadastro(novo_cliente)
+
+        else:
+            
+            print('Você precisa inserir valores válidos para cadastrar cliente.')
+            login()
+        
 
     if opcao == '4':
-        exit()  
+        exit() 
+        return 
        
 
     else:

@@ -66,12 +66,13 @@ class Cliente (Usuario):
            
         else:
             print('Opção inválida')
+            self.mostrar_opcoes_cliente(self)
 
     def pesquisar_quartos(self):
          print('-------Pesquisar Quartos------')
          print('Buscando quartos disponíveis...')
          self.hotel.quartos_disponiveis()
-         self.mostrar_opcoes_cliente()
+         self.mostrar_opcoes_cliente(self)
 
     def pesquisa_tipo(self):
         print('/n ------- Pesquisando por Tipo de Quarto -------')
@@ -87,7 +88,7 @@ class Cliente (Usuario):
             if quarto.getTipo() == 'Solteiro':
              print(quarto.informacoes_quarto())
              tipo_encontrado = True
-             self.mostrar_opcoes_cliente()
+             self.mostrar_opcoes_cliente(self)
             
              
         elif tipo == '2':
@@ -95,14 +96,14 @@ class Cliente (Usuario):
              if quarto.getTipo() == 'Casal':
                  print(quarto.informacoes_quarto())
                  tipo_encontrado = True
-                 self.mostrar_opcoes_cliente()
+                 self.mostrar_opcoes_cliente(self)
              
         elif tipo == '3':
           for quarto in self.hotel.quartos:
               if quarto.getTipo() == 'Família':
                  print(quarto.informacoes_quarto())
                  tipo_encontrado =True
-                 self.mostrar_opcoes_cliente()
+                 self.mostrar_opcoes_cliente(self)
               
         else:
               print('OPÇAO INVÁLIDA.')
@@ -110,7 +111,7 @@ class Cliente (Usuario):
 
         if tipo_encontrado == False:
            print('Não possuimos esse tipo de quarto no momento.')
-           self.mostrar_opcoes_cliente()
+           self.mostrar_opcoes_cliente(self)
        
        
 
@@ -158,16 +159,13 @@ class Cliente (Usuario):
               self.__historico_Reservas.append(nova_reserva)
               self.hotel.adicionar_reserva(nova_reserva)
         
-             self.mostrar_opcoes_cliente()
+             self.mostrar_opcoes_cliente(self)
              
               
        
          if not quarto_encontrado:
             print('Quarto não encontrado.')
-            self.mostrar_opcoes_cliente()
-        #  self.__historico_Reservas.append(reserva)
-        #  print(f"Reserva para o {quarto} de {data_checkin} a {data_checkout} foi realizada com sucesso.")
-        #  self.mostrar_opcoes_cliente()
+            self.mostrar_opcoes_cliente(self)
         
 
     def visualizar_reservas(self):
@@ -178,7 +176,7 @@ class Cliente (Usuario):
         if not self.__historico_Reservas:
            print('Você não possui nenhuma reserva.')
         
-        self.mostrar_opcoes_cliente()
+        self.mostrar_opcoes_cliente(self)
     
         
 
@@ -193,17 +191,19 @@ class Cliente (Usuario):
               print(f'Reserva {reserva.getID()} cancelada')
               print(reserva.informacoes())
               reserva_encontrada = True
-              self.mostrar_opcoes_cliente()
+              self.mostrar_opcoes_cliente(self)
               break
         if not reserva_encontrada:  # Se a reserva não foi encontrada
             print('Reserva não encontrada. Verifique o ID e tente novamente.')
-            self.mostrar_opcoes_cliente()
+            self.mostrar_opcoes_cliente(self)
+        
 
     def cadastro(self, novo_cliente):
       
        self.hotel.addCliente(novo_cliente)
        print('Cliente cadastrado!')
-       self.mostrar_opcoes_cliente()
+       self.mostrar_opcoes_cliente(self)
+       
 
     def informacoes_cliente(self):
    

@@ -68,8 +68,7 @@ class Usuario ():
         
             if self.tipo == 'adimin':                     #mudanças para retornar ao menu que pertence a cada classe
              from administrador import Administrador
-             adm = Administrador(self.__nome_usuario, self.__senha, self.nome, self.email, self.telefone, 222)
-             adm.mostrar_opcoes_adm() 
+             Administrador.mostrar_opcoes_adm(self) 
             else:
           
              from cliente import Cliente

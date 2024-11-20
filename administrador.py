@@ -124,10 +124,10 @@ class Administrador(Usuario):
               if email:
                  cliente.set.email(email)
               print('PErfil de cliente atualizado')
-              self.mostrar_opcoes_adm()
+              self.mostrar_opcoes_adm(self)
        if  not cliente_encontrado :
           print('Cliente não encontrado.')
-          self.mostrar_opcoes_adm()
+          self.mostrar_opcoes_adm(self)
               
     def remover_cliente(self):
        print('---- Remover Cliente-----')
@@ -136,11 +136,11 @@ class Administrador(Usuario):
           if id == cliente.get_id():
              self.hotel.clientes.remove(cliente)
              print(f'O cliente foi removido.')
-             self.mostrar_opcoes_adm()
+             self.mostrar_opcoes_adm(self)
              return
        else:
              print('Cliente não encontrado.')
-             self.mostrar_opcoes_adm()
+             self.mostrar_opcoes_adm(self)
        
                     
               
@@ -174,7 +174,7 @@ class Administrador(Usuario):
        #KAKAKAKKA SURTOS COM ESSA PARTE
        self.hotel.adicionar_quarto(novo_quarto)
        print(f'Quarto {numero} foi adicionado.')
-       self.mostrar_opcoes_adm()
+       self.mostrar_opcoes_adm(self)
     
 
        
@@ -213,11 +213,11 @@ class Administrador(Usuario):
                    print('Valor Invalido.')
                    self.setAtualizar_quarto()
             print(f'Quarto {quarto.get_numero_quarto()} atualizado com sucesso!!')
-            self.mostrar_opcoes_adm()                                          #achar um jeito de colocar erro e voltar pro negocio de menu quando o float der errado
+            self.mostrar_opcoes_adm(self)                                          #achar um jeito de colocar erro e voltar pro negocio de menu quando o float der errado
             
          
       print('Quarto não encontrado.')
-      self.mostrar_opcoes_adm()  
+      self.mostrar_opcoes_adm(self)  
       
     def remover_quarto(self):
        print('---- Remover Quarto-----')
@@ -226,11 +226,11 @@ class Administrador(Usuario):
           if numero == quarto.get_numero_quarto():
              self.hotel.quartos.remove(quarto)
              print(f'Quarto {numero} foi removido.')
-             self.mostrar_opcoes_adm()
+             self.mostrar_opcoes_adm(self)
              return
        else:
              print('Quarto não encontrado.')
-             self.mostrar_opcoes_adm()
+             self.mostrar_opcoes_adm(self)
              
 
         
@@ -250,12 +250,12 @@ class Administrador(Usuario):
                  self.hotel.remover_reserva(reserva)
                  print('Reserva cancelada.')
               elif opcao == '2':
-                 self.mostrar_opcoes_adm()
+                 self.mostrar_opcoes_adm(self)
               else:
                  print('OPÇAO INVÁLIDA.')
            else:
               print('Reserva não encotrada.')
-              self.mostrar_opcoes_adm()
+              self.mostrar_opcoes_adm(self)
 
 
     def visualizar_todas_as_reservas(self):
