@@ -1,25 +1,51 @@
 from usuario import Usuario
 from quarto import Quarto
+from reserva import Reserva
+from hotel import Hotel
+from datetime import datetime
+import uuid
 
 
 
 class Cliente (Usuario):
-    def __init__(self, nome_usuario, senha, nome, email, telefone, id_cliente):
+    def __init__(self, nome_usuario, senha, nome, email, telefone):
         super().__init__(nome_usuario, senha, nome, email, telefone)
-        self.id_cliente = id_cliente
+        self.id_cliente =  str(uuid.uuid4())
         self.__historico_Reservas = []
-   
-   
+        self.hotel = Hotel()
+    def get_nome(self):
+       return self.nome
+    def get_email(self):
+       return self.email
+    def get_telefone(self):
+       return self.telefone
+    def get_id(self):
+       return self.id_cliente
+ 
+    def get_historico(self, reserva):
+     self.__historico_Reservas.remove(reserva)
 
+
+    def set_nome(self, nome):
+       self.nome = nome
+    def set_telefone(self, telefone):
+       self.telefone = telefone
+    def set_email(self, email):
+       self.email = email
+    def set_nome_usuario(self, nome):
+       self.__nome_usuario = nome
+   
+    @staticmethod
     def mostrar_opcoes_cliente(self):
         print('/n ---- HOME ----')
         print('Escolha uma opção:')
         print('1 - Atualizar Perfil')
-        print('2 -  Pesquisr Quartos')
+        print('2 - Buscar Quartos Disponíveis')
         print('3 - Fazer Reserva ')
         print('4 - Visualizar Reservas')
-        print('5 - Cancelar Reservas')
-        print('6 - Sair')
+        print('5 - Cancelar Reserva')
+        print('6 - Pesquisa por Tipo')
+        print('7 - Sair')
         oppcao = input('Digite aqui:')
 
         if oppcao == '1':
@@ -33,6 +59,8 @@ class Cliente (Usuario):
         elif oppcao == '5':
            self.cancelar_reserva()
         elif oppcao == '6':
+           self.pesquisa_tipo()
+        elif oppcao == '7':
            self.fazer_logaout()
 
            
@@ -40,78 +68,156 @@ class Cliente (Usuario):
             print('Opção inválida')
 
     def pesquisar_quartos(self):
-        print('---------PESUISAR QUARTOS')
-        from administrador import Administrador
-        adm = Administrador(Administrador.getNome_usuario(self), 'senha_admin', 'admin', 'admin@hotel.com', 930490293, '001')
-        try:
-           quartos = adm.getQuartos()
-           for quarto in quartos:
-            dis = quarto.verificar_disponibilidade()
-           if dis: 
-                print(f'Numero: {quarto.getNumero_quarto()} ')
-                print(f'Descrição {quarto.getCaracteristicas()}')
-                print(f'Tipo: {quarto.getTipo()}')
-                print(f'Pernoite: {quarto.getPreco_porNoite()}')
-                print('---------------------------------------------------')
-        except Exception as e:
-            print(f'Erro ao acessar quarto {e}')
-        #       print('Deseja reservar algum quarto?')
-        #       print('1 - Sim')
-        # print('2 - Nâõ')
-        # opcao = input('Digite aqui: ')
-        # if opcao == 1:
-        #     self.fazer_reserva()
-        # elif opcao == 2:
-        #     self.mostrar_opcoes_cliente()
-        # else:
-        #     print('Opção Invalida.')
-        #     self.mostrar_opcoes_cliente()
+         print('-------Pesquisar Quartos------')
+         print('Buscando quartos disponíveis...')
+         self.hotel.quartos_disponiveis()
+         self.mostrar_opcoes_cliente()
+
+    def pesquisa_tipo(self):
+        print('/n ------- Pesquisando por Tipo de Quarto -------')
+        print('1 - Solteiro')
+        print('2 - Casal')
+        print('3 - Família')
+        tipo = input('Digite o tipo de quarto que você procura: ')
+        tipo_encontrado = False
+   
+       
+        if tipo == '1':
+          for quarto in self.hotel.quartos:
+            if quarto.getTipo() == 'Solteiro':
+             print(quarto.informacoes_quarto())
+             tipo_encontrado = True
+             self.mostrar_opcoes_cliente()
+            
+             
+        elif tipo == '2':
+           for quarto in self.hotel.quartos:
+             if quarto.getTipo() == 'Casal':
+                 print(quarto.informacoes_quarto())
+                 tipo_encontrado = True
+                 self.mostrar_opcoes_cliente()
+             
+        elif tipo == '3':
+          for quarto in self.hotel.quartos:
+              if quarto.getTipo() == 'Família':
+                 print(quarto.informacoes_quarto())
+                 tipo_encontrado =True
+                 self.mostrar_opcoes_cliente()
+              
+        else:
+              print('OPÇAO INVÁLIDA.')
+              self.pesquisa_tipo()
+
+        if tipo_encontrado == False:
+           print('Não possuimos esse tipo de quarto no momento.')
+           self.mostrar_opcoes_cliente()
+       
+       
 
     def fazer_reserva(self):
-        print('------Fazer Reserva-----')
-        quarto = input('Digite o numero do quarto que voçe deseja reservar: ')
-        from administrador import Administrador
-        if quarto in Administrador.getQuartos(self):
-            if  quarto.Disponibilidade == True:
-                self.__historico_Reservas.append(quarto)
-                quarto.setDisponibilidade(False)
-                print(f'Reserva do quarto {quarto} foi realizada.')
-                self.mostrar_opcoes_cliente()
-            else:
-                print('Quarto não esta disponivel.')
-                self.mostrar_opcoes_cliente()
-        else: 
+         print('------Fazer Reserva-----')
+         numero_quarto = input('Qual quarto deseja reservar? (Insira somente o número do quarto): ')
+         quarto_encontrado = None
+         for quarto in self.hotel.quartos:
+            if quarto.get_numero_quarto() == numero_quarto:
+             if quarto.getDisponivel():
+               quarto_encontrado = quarto
+               break
+             else:
+                print('Quarto nao disponivel para reserva.')
+                return  # Sai do método aqui, não permitindo o processo de reserva
+           
+         if quarto_encontrado:
+
+             data_checkin = input('Informe a data de checkin(AAAA-MM-DD): ')
+             data_checkout = input('Informe a data de check_out(AAAA-MM-DD): ')
+
+
+
+             try:
+                # Converte as strings de data para objetos datetime para comparar
+                data_checkin = datetime.strptime(data_checkin, '%Y-%m-%d')
+                data_checkout = datetime.strptime(data_checkout, '%Y-%m-%d')
+             except ValueError:
+                print("Formato de data inválido. Por favor, insira as datas no formato 'ano-mes-dia'.")
+                self.fazer_reserva()
+                return
+             
+         
+        
+             nova_reserva = Reserva(
+                id_reserva=len(self.__historico_Reservas) + 1,
+                cliente=self,
+                quarto=quarto,
+                data_checkin=data_checkin,
+                data_checkout=data_checkout
+
+             )
+             
+             if nova_reserva.confirmar_reserva() == True:
+              self.__historico_Reservas.append(nova_reserva)
+              self.hotel.adicionar_reserva(nova_reserva)
+        
+             self.mostrar_opcoes_cliente()
+             
+              
+       
+         if not quarto_encontrado:
             print('Quarto não encontrado.')
             self.mostrar_opcoes_cliente()
-
-                
-
-        # adicionar reserva no array hitorico de reservas
-        pass
+        #  self.__historico_Reservas.append(reserva)
+        #  print(f"Reserva para o {quarto} de {data_checkin} a {data_checkout} foi realizada com sucesso.")
+        #  self.mostrar_opcoes_cliente()
+        
 
     def visualizar_reservas(self):
         print('------- Minhas Reservas --------')
         for reserva in self.__historico_Reservas:
-            print(reserva)
-        else:
-            print('Voçe não possui resevas.')
-            self.mostrar_opcoes_cliente()
-        # visualizar a reserva que esta fazndo ou todas as reservas que ja foram feitas?
+            print(f"{reserva.informacoes()} ")
+            print('---------------------')
+        if not self.__historico_Reservas:
+           print('Você não possui nenhuma reserva.')
+        
+        self.mostrar_opcoes_cliente()
     
-        pass
+        
 
     def cancelar_reserva(self):
-        print('----- CANCELAR RESERVA -----')
-        reserva = input('Digite o id da reserva que deseja cancelar: ')
-        if reserva == reserva.getId:
-            self.__historico_Reservas.remove(reserva)
-        else:
-            print('Voce não possui essa reserva.')
+        id = float(input('Digite o ID da sua reserva: '))
+        reserva_encontrada = False
+        for reserva in self.__historico_Reservas:
+            if reserva.getID()== id:
+              reserva.cancelar_reserva()
+              self.__historico_Reservas.remove(reserva)
+              self.hotel.remover_reserva(reserva)
+              print(f'Reserva {reserva.getID()} cancelada')
+              print(reserva.informacoes())
+              reserva_encontrada = True
+              self.mostrar_opcoes_cliente()
+              break
+        if not reserva_encontrada:  # Se a reserva não foi encontrada
+            print('Reserva não encontrada. Verifique o ID e tente novamente.')
+            self.mostrar_opcoes_cliente()
 
-        #remover reserva do array reserva 
-        pass
+    def cadastro(self, novo_cliente):
+      
+       self.hotel.addCliente(novo_cliente)
+       print('Cliente cadastrado!')
+       self.mostrar_opcoes_cliente()
 
-
-
-
+    def informacoes_cliente(self):
+   
+     informacoes = {
+      'ID Cliente': self.id_cliente,
+      "Nome": self.nome,
+      'Nome de usuário' : self.getNome_usuario(),
+      'Telefone': self.telefone,
+      'Email': self.email,
+      
+    }
+     print(informacoes)
     
+
+
+
+     

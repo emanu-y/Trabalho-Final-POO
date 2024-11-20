@@ -1,18 +1,18 @@
 class Quarto:
-    def __init__(self, numero_quarto, tipo_quarto, caracteristicas, preco_por_noite):
+    def __init__(self, numero_quarto, tipo_quarto, caracteristicas, preco_por_noite, disponivel):
         self.numero_quarto = numero_quarto
         self.tipo_quarto = tipo_quarto
         self.caracteristicas = caracteristicas
         self.preco_por_noite = float(preco_por_noite)
-        self.disponibilidade = True
+        self.disponibilidade = disponivel
 
-    def getNumero_quarto(self):
+    def get_numero_quarto(self):
         return self.numero_quarto
 
     def getDisponivel(self):
         return self.disponibilidade 
     
-    def getPreco_porNoite(self):
+    def get_preco_porNoite(self):
         return self.preco_por_noite
     
     def getCaracteristicas(self):
@@ -30,43 +30,47 @@ class Quarto:
     def setPreco(self, valor):
         self.preco_por_noite = valor
 
-           
-    
     def setDisponivel(self, status):
         self.disponibilidade = status
 
 
     def verificar_disponibilidade(self):
-       if self.getDisponivel == True:
-           return True
-       else:
-           return False
+        if self.disponibilidade == True:
+            return True
+        elif self.disponibilidade == False:
+            print('O quarto esta indisponovel')
+
+    def informacoes_quarto(self):
+        informacoes = {
+            'Número ': self.get_numero_quarto(),
+            'Tipo de Quarto ': self.getTipo(),
+            'Caractrísticas ': self.getCaracteristicas(),
+            'Preço por noite' : self.get_preco_porNoite()
+
+        }
+        return informacoes
+    
+
+        
+    
+       
+       
 
     
          
         
-            # print('Quarto nao encontrado.')
+           
         
     def reservar_quarto(self):
-        print('DIGITE O NUMERO DO QUARTO')
-        numero = input('Digite aqui: ')
-        #  if numero in lista de quartos
         if self.getDisponivel() == True:
             self.setDisponivel(False)
-            print('Seu Quarto foi reservado.')
-        else:
-            return 'Quarto Indisponível.'
+        
+            
         
        
     def liberar_quarto(self):
-        print('DIGITE O NUMERO DO QUARTO')
-        numero = input('Digite aqui: ')
-        # if numero in lista de quartos: 
-        if self.getDisponivel() == False:
-               self.setDisponivel(True)
-               print('O quarto foi liberado.')
-        else:
-               print('Esse quarto já está disponível.')
+        if not self.disponibilidade:
+            self.disponibilidade = True
            
 
 
