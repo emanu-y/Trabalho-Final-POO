@@ -80,13 +80,6 @@ if __name__ == '__main__':
    
    
    hotel = Hotel()
-   
-   
-
-   a= Cliente ('emanu', 'adimin', 'eman', 'udeiadimin', 930490293)
-   
-   administrador = Administrador ('emanu', 'adimin', 'eman', 'udei@adimin', 930490293, 000)
-   quarto1 = Quarto('1', 'casal', 'Vista para O mar', 1, True)
 
 usuarios =  [
 
