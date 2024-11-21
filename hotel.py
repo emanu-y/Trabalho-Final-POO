@@ -8,10 +8,8 @@ class Hotel:
             Quarto('103','Solteiro', "Com varanda",320, True),
         ]
          self.usuarios =[
-              Usuario('adm', 'adimin', 'eman', 'udei@adimin', 930490293),
-               Usuario('emanu', 'adimin', 'eman', 'udeiadimin', 930490293),
-               Usuario ('yasss', 'adimin', 'eman', 'udeiadimin', 930490293),
-               Usuario('ema', 'lala', 'emanu', 'ema@adimin', 99898)           
+            
+            
          ]
          
          self.clientes = [
@@ -27,6 +25,8 @@ class Hotel:
 
     def get_quartos(self):
         return self.quartos
+    def get_clientes(self):
+        return self.clientes
     
 
     def addCliente(self, cliente):

@@ -37,7 +37,7 @@ class Administrador(Usuario):
        print('2 - Adicionar Quarto')
        print('3 - Atualizar Quarto')
        print('4 - Remover Quarto')
-       print('5 - Visuallizar Reservas')
+       print('5 - Visualizar Reservas')
        print('6 - Gerar Relatorio')
        print('7 - Atualizar Perfil')
        print('8 - Remover Cliente')
@@ -60,7 +60,7 @@ class Administrador(Usuario):
        elif oppcao == '5':
           self.visualizar_todas_as_reservas()
        elif oppcao == '6':
-          Relatorio.gerar_relatorio(self.hotel)
+          Relatorio.gerar_relatorio(self, self.hotel)
        elif oppcao == '7':
           self.setAtualizar_perfil()
        elif oppcao == '8':
@@ -75,7 +75,7 @@ class Administrador(Usuario):
           
        else:
           print('OPÇÃO INVÁLIDA.')
-          self.mostrar_opcoes_adm()
+          self.mostrar_opcoes_adm(self)
 
     def adicionarCliente(self):
         print('/n ---------Cadastrar Clientes------- ')
@@ -87,20 +87,23 @@ class Administrador(Usuario):
         
 
         novo_cliente = Cliente(nome_u, senha, nome, email, telefone)
+       
+
         print('Cliente foi cadastrado!')
         self.hotel.addCliente(novo_cliente)
-        self.mostrar_opcoes_adm()
+        self.mostrar_opcoes_adm(self)
 
     def visualizar_clientes(self):
-       print('n/ ----- Clientes -----')
-       cliente = False
-       for cliente in self.hotel.clientes:
-          cliente.informacoes_cliente()
-          print('=====================')
-          cliente = True
-          self.mostrar_opcoes_adm()
-       if cliente == False:
-          print('O hotel não possui clientes.')
+      
+      print('\n ----- Clientes -----')
+      if not self.hotel.get_clientes():
+        print('O hotel não possui clientes.')
+      else:
+        for cliente in self.hotel.get_clientes():
+            cliente.informacoes_cliente()
+            print('=====================')
+
+      self.mostrar_opcoes_adm(self)
       
 
     def atualizar_cliente(self):
@@ -123,7 +126,7 @@ class Administrador(Usuario):
                  cliente.set_telefone(telefone)
               if email:
                  cliente.set.email(email)
-              print('PErfil de cliente atualizado')
+              print('Perfil atualizado com secesso!!')
               self.mostrar_opcoes_adm(self)
        if  not cliente_encontrado :
           print('Cliente não encontrado.')
@@ -264,6 +267,7 @@ class Administrador(Usuario):
            print(f'{reserva.informacoes()}')
         else:
            print('Hotel não possui reservas.')
+        self.mostrar_opcoes_adm(self)
    
  
    

@@ -19,6 +19,7 @@ def login():
              if isinstance(user, Administrador):
                  user.fazer_login(usuario, senha)
              else:
+                    print('Senha ou nome de usuário incorreto. Tente novamente.')
                     login()
                     return       
         
@@ -61,6 +62,7 @@ def login():
         
 
     if opcao == '4':
+        print('Saindo...')
         exit() 
         return 
        
@@ -86,12 +88,11 @@ if __name__ == '__main__':
    administrador = Administrador ('emanu', 'adimin', 'eman', 'udei@adimin', 930490293, 000)
    quarto1 = Quarto('1', 'casal', 'Vista para O mar', 1, True)
 
+usuarios =  [
 
-usuarios = [
-    Administrador('yas', 'senha', 'eman', 'udei@adimin', 930490293, 000),
-    Cliente('emanu', 'adimin', 'eman', 'udeiadimin', 930490293)
-    
-]
+     Administrador('yas', 'senha', 'eman', 'udei@adimin', 930490293, 000),
+     Cliente('emanu', 'adimin', 'eman', 'udeiadimin', 930490293)
+             ]
 login()
 
   

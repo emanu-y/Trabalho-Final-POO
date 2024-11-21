@@ -2,7 +2,7 @@
 
 class Relatorio:
     @staticmethod
-    def gerar_relatorio(hotel):
+    def gerar_relatorio(self, hotel):
         print("\n----- Relatório Geral do Hotel -----")
         
         
@@ -31,5 +31,9 @@ class Relatorio:
                 print('---------------------------------')
         else:
             print("Não há reservas registradas.")
+            print("\n----- Fim do Relatório -----")
         
-        print("\n----- Fim do Relatório -----")
+        from administrador import Administrador
+        Administrador.mostrar_opcoes_adm(self)
+        
+       
